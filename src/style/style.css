@@ -1,7 +1,11 @@
-body {
+@import url(./reset.css); 
+@import url(./normalize.css); 
+ 
+ body {
   font-family: "Montserrat";
   background: beige;
   color: red;
+  margin: 0;
 }
 
 /* .image {
@@ -9,4 +13,4 @@ body {
   height: 400px;
   background-size: cover;
   background-image: url(img/_0d29b666-61d5-44b0-a1f1-572d900de6a7.jpeg);
-} */
+} */ 

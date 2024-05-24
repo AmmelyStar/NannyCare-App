@@ -1,7 +1,13 @@
-@import url(c:\Users\Anna\Desktop\WEB\template\webpack-frontend-template\src\style\normalize.css);
+@import url(./style/normalize.css);
+@import url(./style/reset.css);
+
+
+
+
 body {
-  background: beige;
-  color: red;
+  background: white;
+
+
 }
 
 
