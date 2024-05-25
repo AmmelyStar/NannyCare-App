@@ -1,19 +1,40 @@
 import React from 'react';
-import { Container, Title, Left, Right, Image } from './styled.js'; // Предполагается, что у вас есть компоненты Left, Right и Image
-import { Button } from '@mui/material';
+import { Container, Title, Left, Right, Image,Text,Main, Imge, Btn, Img,Blok,Check, Accent, Wrap } from './styled.js'; // Предполагается, что у вас есть компоненты Left, Right и Image
+
+import home from '../../img/home/home.jpeg'
+import arrow from '../../img/icons/arrow.svg'
+import check from '../../img/icons/fe_check.svg'
+
+import Header from '../header/Header.js';
 
 function Home() {
   return (
     <Container>
-      <Left>
+      <Wrap>
+        <Header />
+        <Main>
+          <Left>
         <Title>
-          <span>Make Life Easier for the Family:</span> Find Babysitters Online for All Occasions
+          <Accent>Make Life Easier <br/> for the Family:</Accent> <br/> Find Babysitters Online for All Occasions
         </Title>
-        <Button variant="contained" color="primary">Get Started</Button> 
+        <Btn >
+          Get Started
+          <Img src={arrow} alt="icon"/>
+        </Btn>
       </Left>
       <Right>
-        <Image src="../home.jpeg" alt="Description" /> 
+          <Image src={home} alt="Description" /> 
+          <Blok>
+            <Check>
+              <Imge src={check} alt="icon"/>
+            </Check>
+            <Text>Experienced nannies <br/> <span>15,000</span></Text>
+          </Blok>
       </Right>
+        </Main>
+        
+      </Wrap>
+      
     </Container>
   );
 }

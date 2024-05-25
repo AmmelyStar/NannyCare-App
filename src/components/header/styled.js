@@ -1,13 +1,22 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { accentGray } from '../theme/theme'
+
 
 export const HeaderContainer = styled.header`
-  width: 100%;
-  padding: 20px;
+  width: 1184px;
+  height: 48px;
+  padding: 20px 96px;
   background-color: transparent;
   color: white;
   text-align: center;
   position: relative; 
+  z-index: 1000;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: space-between;
   
   &::after {
     content: '';
@@ -17,7 +26,7 @@ export const HeaderContainer = styled.header`
     transform: translateX(-50%);
     width: 100%;
     height: 1px;
-    background-color: rgba(251, 251, 251, 0.4);
+    background-color: ${accentGray.color};
   }
 `;
 
@@ -30,13 +39,26 @@ export const NavLink = styled(Link)`
   }
 `;
 
+export const Nav = styled.div`
+  font-size:  16px;
+  line-height: 20px;
+  padding-top: 14px;
+  padding-bottom: 14px;
+`;
+
 export const BtnContainer = styled.div`
 display: flex;
+gap: 8px;
 `;
 
 export const Logo = styled.div`
+  font-size:  24px;
+  line-height: 28px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+`;
 
-  color: white;
-
-
+export const Box = styled.div`
+display: flex;
+gap: 92px;
 `;

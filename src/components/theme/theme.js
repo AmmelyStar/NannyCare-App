@@ -12,3 +12,21 @@ export const greenTheme = {
     mainColor: "#103931",
     accentColor: "#dc3545"
 };
+
+export const hoverBgColor = {
+    color: "#F03F3B"
+};
+
+export const BgColor = {
+    color: "transparent"
+};
+
+export const accentGray = {
+    color: "rgba(251, 251, 251, 0.4)",
+
+};
+
+export const Gray = {
+    color: "#88878B",
+
+};

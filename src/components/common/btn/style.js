@@ -1,20 +1,24 @@
 import styled from 'styled-components';
+import { hoverBgColor, accentGray } from '../../theme/theme';
+
 
 export const Btn = styled.button`
-  background-color: ${(props) => props.bgColor || '#007bff'};
-  color: ${(props) => props.textColor || 'transporant'};
-  border: none;
+  background-color: transparent;
+  color: white;
+  border: 1px solid ${accentGray.color};
   padding: 14px 40px;
-  font-size: ${(props) => props.fontSize || '1rem'};
+  font-size: 16px;
+  font-weight: 500;
   cursor: pointer;
   border-radius: 30px;
-  transition: background-color 0.3s ease;
 
-  &:hover {
-    background-color: ${(props) => props.hoverBgColor || '#0056b3'};
+
+  &:hover,
+  :focus,
+  :active {
+    background-color: ${hoverBgColor.color};
+    border: none;
   }
 
-  &:focus {
-    outline: none;
-  }
+ 
 `;
