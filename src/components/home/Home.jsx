@@ -5,7 +5,7 @@ import home from '../../img/home/home.jpeg'
 import arrow from '../../img/icons/arrow.svg'
 import check from '../../img/icons/fe_check.svg'
 
-import Header from '../header/Header.js';
+import Header from '../header/Header.jsx';
 
 function Home() {
   return (

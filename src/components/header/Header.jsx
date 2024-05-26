@@ -8,9 +8,9 @@ import {
   HeaderButton,
   HeaderBtn
 } from './styled.js'
-import { Modal } from '../common/modal/Modal.js'
-import RegistrationForm from '../auth/registration/Registration.js'; // Импортируем компонент регистрации
-import LoginForm from '../auth/login/LoginForm.js';
+import { Modal } from '../common/modal/Modal.jsx'
+import RegistrationForm from '../auth/registration/Registration.jsx'; // Импортируем компонент регистрации
+import LoginForm from '../auth/login/LoginForm.jsx';
 import styled from 'styled-components';
 import { NavLink as RouterNavLink } from 'react-router-dom';
 

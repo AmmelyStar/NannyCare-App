@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Button } from '../common/btn/Button.js';
+import { Button } from '../common/btn/Button.jsx';
 import { redTheme, blueTheme, greenTheme, accentGray, Gray } from '../../components/theme/theme'
 
 

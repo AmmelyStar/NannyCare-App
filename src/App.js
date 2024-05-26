@@ -4,7 +4,7 @@ import HomePage from './pages/home/HomePages';
 import { ThemeProvider } from './components/theme/ThemeProvider';
 import './index.css';
 // import { getDatabase } from 'firebase/database';
-
+import {Nannies} from './pages/nannies/Nannies.jsx'
 
 function App() {
   // useEffect(() => {
@@ -16,6 +16,7 @@ function App() {
     <ThemeProvider>
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/nannies" element={<Nannies />} />
       </Routes>
     </ThemeProvider>
   );

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { accentGray,redTheme } from '../theme/theme'
-import Button from '../common/btn/Button.js';
+import Button from '../common/btn/Button.jsx';
 
 export const HeaderContainer = styled.header`
   width: 1184px;
