@@ -1,11 +1,20 @@
 import styled from 'styled-components';
 
+import { createGlobalStyle } from 'styled-components';
+
+export const GlobalStyle = createGlobalStyle`
+  body.modal-open {
+    overflow: hidden;
+  }
+`;
+
 export const Overlay = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 1440px;
+    height: 800px;
+        height: 100vh;
   background: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;

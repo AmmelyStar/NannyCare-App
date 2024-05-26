@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { accentGray } from '../theme/theme'
-
+import { accentGray,redTheme } from '../theme/theme'
+import Button from '../common/btn/Button.js';
 
 export const HeaderContainer = styled.header`
   width: 1184px;
@@ -30,12 +30,52 @@ export const HeaderContainer = styled.header`
   }
 `;
 
+export const HeaderButton = styled(Button)`
+  background-color: ${redTheme.mainColor};
+   border: none;
+  &:hover,
+  :focus,
+  :active {
+      border: none;
+      background-color: white;
+      color: ${redTheme.mainColor};
+    
+  }
+`;
+
+export const HeaderBtn = styled(Button)`
+
+
+  &:hover,
+  :focus,
+  :active {
+
+   border: none;
+      background-color: white;
+      color: ${redTheme.mainColor};
+  }
+`;
+
+
 export const NavLink = styled(Link)`
   margin: 0 15px;
   color: white;
   text-decoration: none;
-  &:hover {
-    text-decoration: underline;
+  position: relative;
+   &:hover,
+  &:active,
+  &:focus {
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -14px; 
+      left: 50%;
+      transform: translateX(-50%);
+      width: 8px; 
+      height: 8px; 
+      background-color: white;
+      border-radius: 50%; 
+    }
   }
 `;
 

@@ -32,7 +32,7 @@ font-size: 28px;
   line-height: 30px;
   `;
 
-export const Accent= styled.h1`
+export const Accent= styled.p`
   font-size: 70px;
     line-height: 70px;
     font-weight: 500;
