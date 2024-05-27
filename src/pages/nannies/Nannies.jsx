@@ -1,15 +1,17 @@
 import React from 'react';
-import { NanniesContainer, NanniesTitle, HeaderContainer } from './styled';
-import  Header  from '../../components/header/Header';
+import { NanniesContainer, NanniesTitle} from './styled';
+// import  Header  from '../../components/header/Header';
+import {NannyCard} from '../../components/nanny/NannyCard'
 
 
 export const Nannies = () => {
   return (
     <NanniesContainer>
-      <HeaderContainer>
+      {/* <HeaderContainer>
       <Header />
-      </HeaderContainer>
+      </HeaderContainer> */}
       <NanniesTitle>Nannies Page</NanniesTitle>
+      <NannyCard/>
     </NanniesContainer>
   );
 };

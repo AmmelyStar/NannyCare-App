@@ -4,17 +4,20 @@ import { accentGray,redTheme } from '../theme/theme'
 import Button from '../common/btn/Button.jsx';
 
 export const HeaderContainer = styled.header`
-  width: 1184px;
+  width: ${(props) =>
+    (props.$isNanniesPage || props.$isFavoritesPage ? '1248px' : '1184px')}; 
   height: 48px;
+  top: ${(props) => (props.$isHomePage ? '32px' : '0')};
+    left: ${(props) => (props.$isHomePage ? '32px' : '0')};
   padding: 20px 96px;
-  background-color: transparent;
+   background-color: ${(props) =>
+    (props.$isNanniesPage || props.$isFavoritesPage ? redTheme.mainColor : 'transparent')};
   color: white;
   text-align: center;
   position: relative; 
   z-index: 1000;
   position: absolute;
-  top: 0;
-  left: 0;
+
   display: flex;
   justify-content: space-between;
   

@@ -1,9 +1,21 @@
 import React, { useState } from 'react';
 import eye from '../../../img/icons/eye.svg';
 import eyeOff from '../../../img/icons/eye-off.svg';
-import { Container, SubTitle, Title, Wrap, Form, BtnLog, Input, EyeIcon } from './styled';
+import { createUserWithEmailAndPassword } from 'firebase/auth'; // Імпортуємо функцію для реєстрації
+import { auth } from '../../../firebaseConfig'; // Імпортуємо екземпляр аутентифікації Firebase
+import { toast } from 'react-toastify'; // Імпортуємо toast для використання
+import {
+  Container,
+  SubTitle,
+  Title,
+  Wrap,
+  Form,
+  BtnLog,
+  Input,
+  EyeIcon,
+} from './styled';
 
-function RegistrationForm() {
+function RegistrationForm({ onClose }) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -12,15 +24,15 @@ function RegistrationForm() {
   const [passwordPlaceholder, setPasswordPlaceholder] = useState('Password');
   const [showPassword, setShowPassword] = useState(false);
 
-  const handleNameChange = (event) => {
+  const handleNameChange = event => {
     setName(event.target.value);
   };
 
-  const handleEmailChange = (event) => {
+  const handleEmailChange = event => {
     setEmail(event.target.value);
   };
 
-  const handlePasswordChange = (event) => {
+  const handlePasswordChange = event => {
     setPassword(event.target.value);
   };
 
@@ -58,24 +70,60 @@ function RegistrationForm() {
     setShowPassword(!showPassword);
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault(); 
+  const handleSubmit = async event => {
+    event.preventDefault();
 
-    // Ваши действия по обработке введенных данных (например, отправка на сервер или локальная проверка)
-    console.log('Name:', name);
-    console.log('Email:', email);
-    console.log('Password:', password);
+    const isValidEmail = email => {
+      // Регулярний вираз для перевірки правильності формату електронної пошти
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return emailPattern.test(email);
+    };
 
-    setName('');
-    setEmail('');
-    setPassword('');
+    // Перевірка на пусті поля
+    if (!name || !email || !password) {
+      toast.error('Please fill in all fields'); // Відображення повідомлення про пусті поля
+      return;
+    }
+
+    if (!isValidEmail(email)) {
+      toast.error('Please enter a valid email address');
+      return;
+    }
+    if (password.length < 6) {
+      toast.error('Password should be at least 6 characters long');
+      return;
+    }
+
+    try {
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      console.log('User registered successfully:', userCredential.user);
+      setName('');
+      setEmail('');
+      setPassword('');
+      onClose(); // Закриття модального вікна після успішної реєстрації
+    } catch (error) {
+      console.error('Error registering user:', error);
+      if (error.code === 'auth/email-already-in-use') {
+        toast.error('This email address is already registered.');
+      } else {
+        toast.error(error.message); // Відображення повідомлення про помилку
+      }
+    }
   };
 
   return (
     <Container>
       <Wrap>
         <Title>Registration</Title>
-        <SubTitle>Thank you for your interest in our platform! In order to register, we need some information. Please provide us with the following information.</SubTitle>
+        <SubTitle>
+          Thank you for your interest in our platform! In order to register, we
+          need some information. Please provide us with the following
+          information.
+        </SubTitle>
       </Wrap>
       <Form onSubmit={handleSubmit}>
         <Input
@@ -108,8 +156,14 @@ function RegistrationForm() {
           placeholder={passwordPlaceholder}
           required
         />
-        <EyeIcon src={showPassword ? eye : eyeOff} alt="Password visibility" onClick={togglePasswordVisibility} />
-        <BtnLog type="submit">Sign Up</BtnLog>
+        <EyeIcon
+          src={showPassword ? eye : eyeOff}
+          alt="Password visibility"
+          onClick={togglePasswordVisibility}
+        />
+        <BtnLog type="submit" onClick={handleSubmit}>
+          Sign Up
+        </BtnLog>
       </Form>
     </Container>
   );

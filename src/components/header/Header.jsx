@@ -6,13 +6,14 @@ import {
   Nav,
   Box,
   HeaderButton,
-  HeaderBtn
-} from './styled.js'
-import { Modal } from '../common/modal/Modal.jsx'
+  HeaderBtn,
+} from './styled.js';
+import { Modal } from '../common/modal/Modal.jsx';
 import RegistrationForm from '../auth/registration/Registration.jsx'; // Импортируем компонент регистрации
 import LoginForm from '../auth/login/LoginForm.jsx';
 import styled from 'styled-components';
 import { NavLink as RouterNavLink } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 export const NavLink = styled(RouterNavLink)`
   margin: 0 15px;
@@ -23,7 +24,7 @@ export const NavLink = styled(RouterNavLink)`
   &:hover,
   &:active,
   &:focus,
-  &.active { 
+  &.active {
     &::after {
       content: '';
       position: absolute;
@@ -39,9 +40,10 @@ export const NavLink = styled(RouterNavLink)`
 `;
 
 const Header = () => {
-  const [isLoginModalOpen, setLoginModalOpen] = useState(false); 
+  const location = useLocation();
+  const [isLoginModalOpen, setLoginModalOpen] = useState(false);
   const [isRegistrationModalOpen, setRegistrationModalOpen] = useState(false); // Добавляем состояние для модального окна регистрации
-  
+
   const openLoginModal = () => {
     setLoginModalOpen(true);
   };
@@ -50,16 +52,26 @@ const Header = () => {
     setLoginModalOpen(false);
   };
 
-  const openRegistrationModal = () => { // Функция для открытия модального окна регистрации
+  const openRegistrationModal = () => {
+    // Функция для открытия модального окна регистрации
     setRegistrationModalOpen(true);
   };
 
-  const closeRegistrationModal = () => { // Функция для закрытия модального окна регистрации
+  const closeRegistrationModal = () => {
+    // Функция для закрытия модального окна регистрации
     setRegistrationModalOpen(false);
   };
 
+  const isHomePage = location.pathname === '/';
+   const isNanniesPage = location.pathname === '/nannies';
+   const isFavoritesPage = location.pathname === '/favorites';
+
   return (
-    <HeaderContainer>
+    <HeaderContainer
+       $isHomePage={isHomePage}
+    $isNanniesPage={isNanniesPage}
+    $isFavoritesPage={isFavoritesPage}
+    >
       <Logo>Nanny.Services</Logo>
       <Box>
         <Nav>
@@ -68,17 +80,19 @@ const Header = () => {
         </Nav>
         <BtnContainer>
           <HeaderBtn onClick={openLoginModal}>Log In</HeaderBtn>
-          <HeaderButton onClick={openRegistrationModal}>Registration</HeaderButton> {/* Изменяем обработчик события onClick */}
+          <HeaderButton onClick={openRegistrationModal}>
+            Registration
+          </HeaderButton>
         </BtnContainer>
       </Box>
       {isLoginModalOpen && (
         <Modal onClose={closeLoginModal}>
-          <LoginForm />
+          <LoginForm onClose={closeLoginModal} />
         </Modal>
       )}
-      {isRegistrationModalOpen && ( // Добавляем модальное окно для регистрации
+      {isRegistrationModalOpen && (
         <Modal onClose={closeRegistrationModal}>
-          <RegistrationForm />
+          <RegistrationForm onClose={closeRegistrationModal} />
         </Modal>
       )}
     </HeaderContainer>
