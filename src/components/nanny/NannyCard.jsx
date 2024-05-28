@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { fetchDataFromDatabase } from '../../store/api';
 import fav from '../../img/icons/favorite.svg'
 import location from '../../img/icons/location.svg';
+import star from '../../img/icons/Star.svg';
+import { Bubble } from '../common/bubble/Bubble';
 import {
   CardContainer,
   Avatar,
@@ -12,13 +14,6 @@ import {
   Price,
   Description,
   Nanny,
-  KidsAge,
-  Experience,
-  Age,
-  NumberExper,
-  TextExper,
-  Education,
-  Characters,
   Heart,
   Wrap,
   AvatarContainer,
@@ -27,6 +22,9 @@ import {
   Details,
   Img,
   HeaderCard,
+  ImgStar,
+  BubbleContainer,
+  BtnMore,
 } from './style';
 
 export const NannyCard = () => {
@@ -42,6 +40,18 @@ export const NannyCard = () => {
         console.error('Error fetching data from database:', error);
       });
   }, []);
+
+   const calculateAge = birthday => {
+     const today = new Date();
+     const birthDate = new Date(birthday);
+     let age = today.getFullYear() - birthDate.getFullYear();
+     const month = today.getMonth() - birthDate.getMonth();
+     if (month < 0 || (month === 0 && today.getDate() < birthDate.getDate())) {
+       age--;
+     }
+     return age;
+   };
+
 
   return (
     <div>
@@ -66,34 +76,49 @@ export const NannyCard = () => {
                     <Img src={location} alt={nanny.location} />
                     {nanny.location}
                   </Location>
-                  <Rating>Rating: {nanny.rating}</Rating>
+                  <Rating>
+                    <ImgStar src={star} alt={nanny.rating} />
+                    Rating: {nanny.rating}
+                  </Rating>
                   <Price>
-                    Price / 1 hour: {nanny.price_per_hour}
-                    {'$'}
+                    Price / 1 hour:{' '}
+                    <span>
+                      {nanny.price_per_hour}
+                      {'$'}
+                    </span>
                   </Price>
+
                   <Heart>
                     <img src={fav} alt={nanny.name} />
                   </Heart>
                 </Details>
               </HeaderCard>
-
-              <NumberExper>
-                <Age>Age: {nanny.birthday}</Age>
-                <Experience>Experience: {nanny.experience}</Experience>
-                <KidsAge>Kids Age: {nanny.kids_age}</KidsAge>
-              </NumberExper>
-
-              <TextExper>
-                <Characters>
-                  Characters:
+              <BubbleContainer>
+                <Bubble>
+                  Age: <span> {calculateAge(nanny.birthday)}</span>
+                </Bubble>
+                <Bubble>
+                  Experience: <span>{nanny.experience}</span>
+                </Bubble>
+                <Bubble>
+                  Kids Age: <span>{nanny.kids_age}</span>
+                </Bubble>
+                <Bubble>
+                  Characters:{' '}
                   {nanny.characters.map((character, i) => (
-                    <div key={i}> {character}</div>
+                    <span key={i}>
+                      {character}
+                      {i !== nanny.characters.length - 1 && ', '}
+                    </span>
                   ))}
-                </Characters>
-                <Education>Education: {nanny.education}</Education>
-              </TextExper>
+                </Bubble>
+                <Bubble>
+                  Education: <span> {nanny.education}</span>{' '}
+                </Bubble>
+              </BubbleContainer>
 
               <Description>{nanny.about}</Description>
+              <BtnMore>Read more</BtnMore>
             </InfoContainer>
           </CardContainer>
         ))

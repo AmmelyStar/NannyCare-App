@@ -18,5 +18,5 @@ background-color: #F3F3F3;
 export const NanniesTitle = styled.h1`
   font-size: 24px;
   color: black;
-  margin-top: 100px;
+  padding-top: 100px;
 `;

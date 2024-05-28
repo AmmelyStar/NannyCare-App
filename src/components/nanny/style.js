@@ -11,6 +11,7 @@ padding: 24px;
 gap: 24px;
 
 
+
 `;
 
 export const Wrap = styled.div`
@@ -54,6 +55,20 @@ export const Circle = styled.div`
   border: 4px solid white; 
 `;
 
+export const InfoContainer = styled.div`
+display: flex;
+flex-direction: column;
+margin-bottom: 14px;
+`;
+
+
+export const HeaderCard = styled.div`
+display: flex;
+justify-content: space-between;
+margin-bottom: 24px;
+
+`;
+
 
 export const Wrapper = styled.div`
 color: black;
@@ -74,108 +89,138 @@ font-size: 16px;
 export const Name = styled.div`
 line-height: 24px;
 font-size: 24px;
+
 `;
 
 export const Details = styled.div`
 display: flex;
-position: relative;
+font-weight: 600;
+margin: 0;
+justify-content: center;
+text-align: center;
+
+
 
 `;
 
 
 export const Location= styled.div`
 display: flex;
-gap: 8px;
 line-height: 24px;
 font-size: 16px;
-font-weight: 600;
+margin-top: -3px;
+margin-right: 32px;
+margin-left: 8px;
+position: relative;
+padding-top: 6px;
+
 
 `;
+
+
 export const Img = styled.img`
 width: 16px;
 height: 16px;
 position: absolute;
-top: 2px;
+top: 3px;
+left: -24px;
+padding-top: 6px;
+
+`;
+
+export const ImgStar = styled.img`
+width: 16px;
+height: 16px;
+position: absolute;
+top: 0;
 left: -20px;
+padding-top: 6px;
+
 
 `;
-
-export const HeaderCard = styled.div`
-display: flex;
-justify-content: space-between;
-
-`;
-
-
-
-
-export const InfoContainer = styled.div`
-display: flex;
-flex-direction: column;
-`;
-
-
-
 
 
 export const Rating = styled.div`
-color: black;
-background-color: weight;
+position: relative;
+margin-left: 16px;
+margin-right: 16px;
+padding-top: 6px;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 6px;
+    bottom: 0;
+    right: 110px;
+    width: 1px;
+    height: 16px;
+    background-color: rgba(17, 16, 28, 0.2);
+    margin-right:6px;
+  }
+
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 6px;
+    bottom: 0;
+    right: -18px;
+    width: 1px;
+    height: 16px;
+    background-color: rgba(17, 16, 28, 0.2);
+   
+    
+  }
 `;
 
 export const Price = styled.div`
-color: black;
-background-color: weight;
+margin-left: 16px;
+margin-right: 48px;
+padding-top: 6px;
+span{
+color: ${Green.color};
+}
+
 `;
+
 
 
 export const Description = styled.div`
-color: black;
-background-color: weight;
+color: rgba(17, 16, 28, 0.5);
+margin-bottom: 14px;
+
+
 `;
 
 
 
-export const KidsAge = styled.div`
-color: black;
-background-color: weight;
-`;
-
-export const Experience = styled.div`
-color: black;
-background-color: weight;
-`;
-
-export const Age = styled.div`
-color: black;
-background-color: weight;
-`;
 
 
-export const NumberExper = styled.div`
-color: black;
-background-color: weight;
+export const BubbleContainer = styled.div`
+display: flex;
+flex-wrap: wrap;
+gap: 8px;
+margin-bottom: 24px;
+color: rgba(138, 138, 137, 1);
+  font-weight: 500;
+span{
+  color: black;
+  font-weight: 600;
+}
 `;
 
 
-export const TextExper= styled.div`
+
+
+export const BtnMore = styled.div`
+border-bottom: black 2px solid;
 color: black;
-background-color: weight;
+
+  width: 80px;
+  cursor: pointer;
 `;
-
-
-export const Education = styled.div`
-color: black;
-background-color: weight;
-`;
-
-
-export const Characters = styled.div`
-color: black;
-background-color: weight;
-`;
-
 
 export const Heart = styled.div`
+cursor: pointer;
 
 `;
