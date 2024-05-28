@@ -25,10 +25,13 @@ import {
   ImgStar,
   BubbleContainer,
   BtnMore,
+  Review,
+  ReviewContainer
 } from './style';
 
 export const NannyCard = () => {
   const [nannyData, setNannyData] = useState(null);
+  const [showReviews, setShowReviews] = useState([]);
 
   useEffect(() => {
     fetchDataFromDatabase()
@@ -41,17 +44,24 @@ export const NannyCard = () => {
       });
   }, []);
 
-   const calculateAge = birthday => {
-     const today = new Date();
-     const birthDate = new Date(birthday);
-     let age = today.getFullYear() - birthDate.getFullYear();
-     const month = today.getMonth() - birthDate.getMonth();
-     if (month < 0 || (month === 0 && today.getDate() < birthDate.getDate())) {
-       age--;
-     }
-     return age;
-   };
+  const calculateAge = birthday => {
+    const today = new Date();
+    const birthDate = new Date(birthday);
+    let age = today.getFullYear() - birthDate.getFullYear();
+    const month = today.getMonth() - birthDate.getMonth();
+    if (month < 0 || (month === 0 && today.getDate() < birthDate.getDate())) {
+      age--;
+    }
+    return age;
+  };
 
+  const handleToggleReviews = index => {
+    setShowReviews(prevState => {
+      const newShowReviews = [...prevState];
+      newShowReviews[index] = !newShowReviews[index];
+      return newShowReviews;
+    });
+  };
 
   return (
     <div>
@@ -70,32 +80,26 @@ export const NannyCard = () => {
                   <Nanny>Nanny</Nanny>
                   <Name>{nanny.name}</Name>
                 </Wrapper>
-
                 <Details>
                   <Location>
-                    <Img src={location} alt={nanny.location} />
+                    <Img src={location} alt="Location icon" />
                     {nanny.location}
                   </Location>
                   <Rating>
-                    <ImgStar src={star} alt={nanny.rating} />
+                    <ImgStar src={star} alt="Rating star" />
                     Rating: {nanny.rating}
                   </Rating>
                   <Price>
-                    Price / 1 hour:{' '}
-                    <span>
-                      {nanny.price_per_hour}
-                      {'$'}
-                    </span>
+                    Price / 1 hour: <span>{nanny.price_per_hour}$</span>
                   </Price>
-
                   <Heart>
-                    <img src={fav} alt={nanny.name} />
+                    <img src={fav} alt="Favorite icon" />
                   </Heart>
                 </Details>
               </HeaderCard>
               <BubbleContainer>
                 <Bubble>
-                  Age: <span> {calculateAge(nanny.birthday)}</span>
+                  Age: <span>{calculateAge(nanny.birthday)}</span>
                 </Bubble>
                 <Bubble>
                   Experience: <span>{nanny.experience}</span>
@@ -113,12 +117,26 @@ export const NannyCard = () => {
                   ))}
                 </Bubble>
                 <Bubble>
-                  Education: <span> {nanny.education}</span>{' '}
+                  Education: <span>{nanny.education}</span>
                 </Bubble>
               </BubbleContainer>
-
               <Description>{nanny.about}</Description>
-              <BtnMore>Read more</BtnMore>
+              <BtnMore onClick={() => handleToggleReviews(index)}>
+                {showReviews[index] ? 'Hide reviews' : 'Read more'}
+              </BtnMore>
+              {showReviews[index] && (
+                <ReviewContainer>
+                  {nanny.reviews.map((review, i) => (
+                    <Review key={i}>
+                      <p>
+                        <strong>{review.reviewer}</strong>
+                      </p>
+                      <p>Rating: {review.rating}</p>
+                      <p>{review.comment}</p>
+                    </Review>
+                  ))}
+                </ReviewContainer>
+              )}
             </InfoContainer>
           </CardContainer>
         ))

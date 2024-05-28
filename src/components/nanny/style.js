@@ -224,3 +224,11 @@ export const Heart = styled.div`
 cursor: pointer;
 
 `;
+export const ReviewContainer = styled.div`
+cursor: pointer;
+
+`;
+export const Review = styled.div`
+cursor: pointer;
+
+`;
