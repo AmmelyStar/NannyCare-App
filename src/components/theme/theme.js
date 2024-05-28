@@ -1,6 +1,6 @@
 export const redTheme = {
     mainColor: "#F03F3B",
-    accentColor: "#30330C"
+    accentColor: "rgba(240, 63, 59, 0.2)"
 };
 
 export const blueTheme = {
@@ -28,5 +28,11 @@ export const accentGray = {
 
 export const Gray = {
     color: "#88878B",
+   mainColor: "rgba(138, 138, 137, 1)"
+
+};
+
+export const Green = {
+    color: "#38CD3E",
 
 };

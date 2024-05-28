@@ -18,6 +18,7 @@ export const HeaderContainer = styled.header`
   z-index: 1000;
   position: absolute;
 
+
   display: flex;
   justify-content: space-between;
   

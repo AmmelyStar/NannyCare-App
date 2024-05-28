@@ -10,6 +10,7 @@ export const HeaderContainer = styled.div`
 
 
 export const FavoritesContainer = styled.div`
+background-color: #F3F3F3;
 
 
 `;
