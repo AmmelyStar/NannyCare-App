@@ -4,6 +4,8 @@ import fav from '../../img/icons/favorite.svg'
 import location from '../../img/icons/location.svg';
 import star from '../../img/icons/Star.svg';
 import { Bubble } from '../common/bubble/Bubble';
+import { Appointment } from '../appointment/Appointment'
+import { Modal } from '../common/modal/Modal';
 import {
   CardContainer,
   Avatar,
@@ -26,18 +28,29 @@ import {
   BubbleContainer,
   BtnMore,
   Review,
-  ReviewContainer
+  ReviewContainer,
+  ImgRew,
+  NameRew,
+  RewRating,
+  Ava,
+  Cont,
+  Comment,
+  ContCont,
+  BtnApp,
 } from './style';
+
 
 export const NannyCard = () => {
   const [nannyData, setNannyData] = useState(null);
   const [showReviews, setShowReviews] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedNanny, setSelectedNanny] = useState(null);
 
   useEffect(() => {
     fetchDataFromDatabase()
       .then(dataSnapshot => {
         console.log('Received data from database:', dataSnapshot);
-        setNannyData(dataSnapshot); // Устанавливаем данные в состояние компонента
+        setNannyData(dataSnapshot); 
       })
       .catch(error => {
         console.error('Error fetching data from database:', error);
@@ -63,6 +76,23 @@ export const NannyCard = () => {
     });
   };
 
+  function formatRating(rating) {
+    return Number.isInteger(rating) ? `${rating}.0` : rating;
+  }
+
+  function formatingRating(rating) {
+    return parseFloat(rating).toFixed(1);
+  }
+
+    const handleOpenModal = nanny => {
+      setSelectedNanny(nanny); // Set the selected nanny
+      setIsModalOpen(true); // Open the modal
+    };
+
+    const handleCloseModal = () => {
+      setIsModalOpen(false); // Close the modal
+    };
+
   return (
     <div>
       {nannyData ? (
@@ -87,7 +117,7 @@ export const NannyCard = () => {
                   </Location>
                   <Rating>
                     <ImgStar src={star} alt="Rating star" />
-                    Rating: {nanny.rating}
+                    Rating: {formatingRating(nanny.rating)}
                   </Rating>
                   <Price>
                     Price / 1 hour: <span>{nanny.price_per_hour}$</span>
@@ -121,20 +151,37 @@ export const NannyCard = () => {
                 </Bubble>
               </BubbleContainer>
               <Description>{nanny.about}</Description>
-              <BtnMore onClick={() => handleToggleReviews(index)}>
-                {showReviews[index] ? 'Hide reviews' : 'Read more'}
-              </BtnMore>
+              {!showReviews[index] && (
+                <BtnMore onClick={() => handleToggleReviews(index)}>
+                  Read more
+                </BtnMore>
+              )}
               {showReviews[index] && (
                 <ReviewContainer>
                   {nanny.reviews.map((review, i) => (
                     <Review key={i}>
-                      <p>
-                        <strong>{review.reviewer}</strong>
-                      </p>
-                      <p>Rating: {review.rating}</p>
-                      <p>{review.comment}</p>
+                      <ContCont>
+                        <Ava>
+                          <strong>{review.reviewer.charAt(0)}</strong>
+                        </Ava>
+                        <Cont>
+                          {' '}
+                          <NameRew>
+                            <strong>{review.reviewer}</strong>
+                          </NameRew>
+                          <RewRating>
+                            <ImgRew src={star} alt="Rating star" />
+                            <strong>{formatRating(review.rating)}</strong>
+                          </RewRating>
+                        </Cont>
+                      </ContCont>
+
+                      <Comment>{review.comment}</Comment>
                     </Review>
                   ))}
+                  <BtnApp onClick={() => handleOpenModal(nanny)}>
+                    Make an appointment
+                  </BtnApp>
                 </ReviewContainer>
               )}
             </InfoContainer>
@@ -142,6 +189,15 @@ export const NannyCard = () => {
         ))
       ) : (
         <p>Loading...</p>
+      )}
+      {isModalOpen && selectedNanny && (
+        <Modal onClose={handleCloseModal}>
+          <Appointment
+            isOpen={isModalOpen}
+            onClose={handleCloseModal}
+            nanny={selectedNanny}
+          />
+        </Modal>
       )}
     </div>
   );

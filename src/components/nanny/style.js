@@ -1,5 +1,8 @@
 import styled from 'styled-components';
 import { redTheme, Green, Gray } from '../theme/theme'
+import { Button } from '../common/btn/Button';
+
+
 export const CardContainer = styled.div`
 width: 1184px;
 border-radius: 24px;
@@ -225,10 +228,102 @@ cursor: pointer;
 
 `;
 export const ReviewContainer = styled.div`
-cursor: pointer;
+gap: 25px;
+display: flex;
+flex-direction: column;
+justify-content: start;
+align-items: start;
+margin-top: 48px;
 
 `;
+
 export const Review = styled.div`
-cursor: pointer;
+  display: flex;
+flex-direction: column;
+`;
+export const ContCont = styled.div`
+  display: flex;
+  gap: 12px;
+  margin: 0;
+`;
+
+export const ImgRew = styled.img`
+position: absolute;
+top: -1px;
+ left: -24px;
+ width: 16px;
+ height: 16px;
 
 `;
+
+export const NameRew = styled.div`
+margin-bottom: 4px;
+  font-size: 14px;
+  line-height: 20px;
+
+
+
+`;
+
+
+ export const RewRating = styled.div`
+ display: flex;
+ gap: 8px;
+ position: relative;
+  left: 8px;
+  font-size: 14px;
+  line-height: 16px;
+  justify-content: start;
+
+
+
+ `;
+
+export const Ava = styled.div`
+ width: 44px;
+ height: 44px;
+ border-radius: 50px;
+ background-color: ${redTheme.accentColor};
+${redTheme.accentColor};
+display: flex;
+justify-content: center;
+text-align: center;
+color: ${redTheme.mainColor};
+font-size: 20px;
+line-height: 20px;
+align-items: center;
+margin: 0;
+ `;
+
+ 
+export const Cont = styled.div`
+display: flex;
+flex-direction: column;
+text-align: center;
+justify-content: center;
+align-items: center;
+gap: 8px;
+ `;
+
+ export const Comment = styled.div`
+color: ${Gray.color};
+font-size: 16px;
+line-height:  20px;
+margin-top: 16px;
+ `;
+
+
+ export const BtnApp = styled(Button)`
+color:white;
+ background-color: ${redTheme.mainColor};
+
+ &:hover,
+ :active,
+ :focus{
+  border: none;
+  color: ${redTheme.mainColor};
+ background-color: white;
+
+ }
+ `;
+

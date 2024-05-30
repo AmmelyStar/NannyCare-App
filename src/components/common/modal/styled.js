@@ -13,7 +13,7 @@ export const Overlay = styled.div`
   top: 0;
   left: 0;
   width: 1440px;
-    height: 800px;
+
         height: 100vh;
   background: rgba(0, 0, 0, 0.5);
   display: flex;
@@ -27,9 +27,9 @@ export const ModalContent = styled.div`
   padding: 20px;
   border-radius: 30px;
   width: 566px;
-  height: 490px;
+  height: auto;
   position: relative;
-  z-index: 2001; /* Убедитесь, что у модалки z-index выше, чем у оверлея */
+  z-index: 2001; 
 `;
 
 export const CloseButton = styled.button`
@@ -41,5 +41,5 @@ export const CloseButton = styled.button`
   top: 15px;
   right: 20px;
   cursor: pointer;
-  z-index: 2002; /* Дополнительно, чтобы кнопка закрытия была на самом верху */
+  z-index: 2002; 
 `;
