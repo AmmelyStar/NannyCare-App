@@ -6,6 +6,7 @@ import star from '../../img/icons/Star.svg';
 import { Bubble } from '../common/bubble/Bubble';
 import { Appointment } from '../appointment/Appointment'
 import { Modal } from '../common/modal/Modal';
+import styled from 'styled-components';
 import {
   CardContainer,
   Avatar,
@@ -38,6 +39,10 @@ import {
   ContCont,
   BtnApp,
 } from './style';
+
+export const StyledModal = styled(Modal)`
+  background-color: rgba(17, 16, 28, 0.1);
+`;
 
 
 export const NannyCard = () => {
@@ -191,13 +196,13 @@ export const NannyCard = () => {
         <p>Loading...</p>
       )}
       {isModalOpen && selectedNanny && (
-        <Modal onClose={handleCloseModal}>
+        <StyledModal onClose={handleCloseModal}>
           <Appointment
             isOpen={isModalOpen}
             onClose={handleCloseModal}
             nanny={selectedNanny}
           />
-        </Modal>
+        </StyledModal>
       )}
     </div>
   );

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Button } from '../common/btn/Button';
 import { redTheme, blueTheme, greenTheme, accentGray, Gray } from '../theme/theme'
- 
+ import Select from 'react-select';
 export const Container = styled.div`
   padding: 44px;
 
@@ -22,30 +22,101 @@ color: ${Gray.color};
   margin-bottom: 40px;
 `;
 
+export const Wrapper = styled.div`
+   display: flex;
+  flex-wrap: wrap;
+  gap: 16px 8px;
+`;
+
+export const InputSmall = styled.input`
+ padding: 16px 18px;
+  border-radius: 12px;
+  width: 194px;
+    height: 18px;
+    border: 1px solid rgba(17, 16, 28, 0.1);
+
+`;
+// export const Select = styled.select`
+// padding-left: 18px;
+//   border-radius: 12px;
+//   width: 232px;
+//     height: 52px;
+//     border: 1px solid rgba(17, 16, 28, 0.1);
+
+// `;
+
+// export const Option = styled.option`
+//   background-color: #fff;
+//   color: #11101c;
+//   font-size: 16px;
+//     width: 150px;
+//     height: 180px;
+  
+// `;
+
+export const StyledSelect = styled(Select)`
+  .css-13cymwt-control {
+    width: 232px;
+    height: 52px;
+    border-radius: 12px;
+    border: 1px solid rgba(17, 16, 28, 0.1);
+    font-size: 16px;
+    color: #11101c;
+    background-color: #fff;
+
+   
+  }
+
+  .css-1nmdiq5-menu {
+    width: 150px;
+    height: 180px;
+    background-color: white;
+    color: black;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+     border-radius: 12px;
+  }
+
+  .react-select__option {
+    font-size: 16px;
+    color: black;
+    background-color: transparent;
+
+    &:hover {
+      background-color: rgba(17, 16, 28, 0.1);
+    }
+
+    &.react-select__option--is-selected {
+      background-color: rgba(17, 16, 28, 0.2);
+    }
+  }
+`;
+
+
 export const FormField = styled.div`
   margin-bottom: 20px;
 `;
 
-export const Label = styled.label`
-  display: block;
-  font-size: 16px;
-  margin-bottom: 5px;
-`;
+
+
+
 
 export const Input = styled.input`
-  width: 100%;
-  padding: 10px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  width: 436px;
+  padding: 16px 18px;
+  /* font-size: 16px; */
+    border: 1px solid rgba(17, 16, 28, 0.1);
+  border-radius: 12px;
 `;
 
 export const Textarea = styled.textarea`
-  width: 100%;
-  padding: 10px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  width: 436px;
+  padding: 16px 18px;
+  /* font-size: 16px; */
+    border: 1px solid rgba(17, 16, 28, 0.1);
+  border-radius: 12px;
 `;
 
 export const Btn = styled(Button)`

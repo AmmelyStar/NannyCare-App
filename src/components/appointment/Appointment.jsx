@@ -5,16 +5,61 @@ import {
   Container,
   SubTitle,
   FormField,
-  Label,
+  StyledSelect,
   Input,
   Textarea,
+  InputSmall,
+  Name,
+  Nanny,
+  NannyAva,
+  Wrapper,
+  Option,
+} from './styled';
 
-} from './styled'; 
-import { Name, Nanny, NannyAva } from './styled';
+const generateTimeOptions = () => {
+  const times = [];
+  const now = new Date();
+  const currentHour = now.getHours();
+  const currentMinutes = now.getMinutes();
 
+  let startHour = currentHour;
+  let startMinutes = currentMinutes < 30 ? 30 : 0;
+  if (currentMinutes >= 30) {
+    startHour += 1;
+  }
+
+  let firstTimeAdded = false;
+  for (let hour = startHour; hour < 24; hour++) {
+    if (!firstTimeAdded) {
+      times.push({ value: 'header', label: 'Meeting time' });
+      firstTimeAdded = true;
+    }
+
+    if (startMinutes === 30) {
+      times.push({
+        value: `${hour < 10 ? '0' : ''}${hour}:30`,
+        label: `${hour < 10 ? '0' : ''}${hour}:30`,
+      });
+      startMinutes = 0;
+    } else {
+      times.push({
+        value: `${hour < 10 ? '0' : ''}${hour}:00`,
+        label: `${hour < 10 ? '0' : ''}${hour}:00`,
+      });
+      times.push({
+        value: `${hour < 10 ? '0' : ''}${hour}:30`,
+        label: `${hour < 10 ? '0' : ''}${hour}:30`,
+      });
+    }
+  }
+
+  return times;
+};
 
 export const Appointment = ({ isOpen, onClose, nanny }) => {
   if (!isOpen) return null;
+
+  const timeOptions = generateTimeOptions();
 
   return (
     <Container>
@@ -31,47 +76,33 @@ export const Appointment = ({ isOpen, onClose, nanny }) => {
           <strong> {nanny.name}</strong>
         </Name>
       </NannyAva>
+      <Wrapper>
+        <FormField>
+          <InputSmall type="text" placeholder="Address" />
+        </FormField>
 
-      {/* 
-      <FormField>
-        <Label>Nanny's Name</Label>
-        <Input type="text" placeholder="Enter nanny's name" />
-      </FormField>
+        <FormField>
+          <InputSmall type="text" placeholder="+380" />
+        </FormField>
 
- 
-      <FormField>
-        <Label>Address</Label>
-        <Input type="text" placeholder="Enter your address" />
-      </FormField>
-
-   
-      <FormField>
-        <Label>Child's age</Label>
-        <Input type="text" placeholder="Enter child's age" />
-      </FormField>
-
+        <FormField>
+          <InputSmall type="text" placeholder="Child's age" />
+        </FormField>
+        <FormField>
+          <StyledSelect options={timeOptions} placeholder="00:00" />
+        </FormField>
+      </Wrapper>
 
       <FormField>
-        <Label>Email</Label>
-        <Input type="email" placeholder="Enter your email" />
-      </FormField> */}
-
-      <FormField>
-        <Label>Meeting time</Label>
-        <Input type="time" />
+        <Input type="email" placeholder="Email" />
       </FormField>
 
       <FormField>
-        <Label>Father's or mother's name</Label>
-        <Input type="text" placeholder="Enter father's or mother's name" />
+        <Input type="text" placeholder="Father's or mother's name" />
       </FormField>
 
       <FormField>
-        <Label>Comment</Label>
-        <Textarea
-          rows="4"
-          placeholder="Enter any additional comments"
-        ></Textarea>
+        <Textarea rows="4" placeholder="Comment" />
       </FormField>
 
       <Btn type="submit">Send</Btn>

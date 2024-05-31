@@ -77,6 +77,7 @@ const Header = () => {
         <Nav>
           <NavLink to="/">Home</NavLink>
           <NavLink to="/nannies">Nannies</NavLink>
+          {!isHomePage && <NavLink to="/favorites">Favorites</NavLink>}
         </Nav>
         <BtnContainer>
           <HeaderBtn onClick={openLoginModal}>Log In</HeaderBtn>
