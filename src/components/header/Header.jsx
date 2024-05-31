@@ -68,9 +68,9 @@ const Header = () => {
 
   return (
     <HeaderContainer
-       $isHomePage={isHomePage}
-    $isNanniesPage={isNanniesPage}
-    $isFavoritesPage={isFavoritesPage}
+      $isHomePage={isHomePage}
+      $isNanniesPage={isNanniesPage}
+      $isFavoritesPage={isFavoritesPage}
     >
       <Logo>Nanny.Services</Logo>
       <Box>
@@ -80,7 +80,12 @@ const Header = () => {
         </Nav>
         <BtnContainer>
           <HeaderBtn onClick={openLoginModal}>Log In</HeaderBtn>
-          <HeaderButton onClick={openRegistrationModal}>
+          <HeaderButton
+            onClick={openRegistrationModal}
+            $isHomePage={isHomePage}
+            $isNanniesPage={isNanniesPage}
+            $isFavoritesPage={isFavoritesPage}
+          >
             Registration
           </HeaderButton>
         </BtnContainer>

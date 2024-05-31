@@ -53,3 +53,30 @@ background-color: ${redTheme.mainColor};
 width: 100%;
 
 `;
+
+export const Name = styled.div`
+  font-size: 16px;
+  line-height: 24px;
+  color: black;
+span{
+  margin-bottom: 4px;
+  font-size: 12px;
+  line-height: 16px;
+  color: rgba(138, 138, 137, 1);
+}
+`;
+
+export const Nanny = styled.img`
+width: 44px;
+height: 44px;
+border-radius: 15px;
+
+
+`;
+
+export const NannyAva = styled.div`
+display: flex;
+gap: 14px;
+align-items: center;
+margin-bottom: 40px;
+`;

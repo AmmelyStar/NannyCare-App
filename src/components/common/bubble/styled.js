@@ -8,4 +8,5 @@ export const StyledBubble = styled.div`
  width: auto; 
   display: inline-block;
   color: ${Gray.accentColor};
+  font-weight: 600;
 `;

@@ -9,8 +9,9 @@ import {
   Input,
   Textarea,
 
-} from './styled'; // Подключите стилизованные компоненты для полей формы
-import { Nanny, Name } from '../nanny/style';
+} from './styled'; 
+import { Name, Nanny, NannyAva } from './styled';
+
 
 export const Appointment = ({ isOpen, onClose, nanny }) => {
   if (!isOpen) return null;
@@ -23,8 +24,13 @@ export const Appointment = ({ isOpen, onClose, nanny }) => {
         creating a safe and comfortable environment. Fill out the form below so
         we can match you with the perfect care partner.
       </SubTitle>
-      <Nanny src={nanny.avatar_url} alt="Nanny Avatar" />
-      <Name src={nanny.name} alt="Nanny Avatar" />
+      <NannyAva>
+        <Nanny src={nanny.avatar_url} alt="Nanny Avatar" />
+        <Name>
+          <span> Your nanny</span> <br />
+          <strong> {nanny.name}</strong>
+        </Name>
+      </NannyAva>
 
       {/* 
       <FormField>

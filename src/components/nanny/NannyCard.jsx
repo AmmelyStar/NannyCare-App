@@ -85,12 +85,12 @@ export const NannyCard = () => {
   }
 
     const handleOpenModal = nanny => {
-      setSelectedNanny(nanny); // Set the selected nanny
-      setIsModalOpen(true); // Open the modal
+      setSelectedNanny(nanny); 
+      setIsModalOpen(true); 
     };
 
     const handleCloseModal = () => {
-      setIsModalOpen(false); // Close the modal
+      setIsModalOpen(false); 
     };
 
   return (
@@ -153,7 +153,7 @@ export const NannyCard = () => {
               <Description>{nanny.about}</Description>
               {!showReviews[index] && (
                 <BtnMore onClick={() => handleToggleReviews(index)}>
-                  Read more
+                  <strong>Read more</strong>
                 </BtnMore>
               )}
               {showReviews[index] && (

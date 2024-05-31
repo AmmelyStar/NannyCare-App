@@ -191,6 +191,7 @@ color: ${Green.color};
 export const Description = styled.div`
 color: rgba(17, 16, 28, 0.5);
 margin-bottom: 14px;
+font-weight: 400;
 
 
 `;
@@ -218,8 +219,7 @@ span{
 export const BtnMore = styled.div`
 border-bottom: black 2px solid;
 color: black;
-
-  width: 80px;
+  width: 84px;
   cursor: pointer;
 `;
 
@@ -320,7 +320,7 @@ color:white;
  &:hover,
  :active,
  :focus{
-  border: none;
+  border:  1px solid ${redTheme.mainColor};
   color: ${redTheme.mainColor};
  background-color: white;
 

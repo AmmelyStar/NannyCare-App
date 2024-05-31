@@ -36,11 +36,13 @@ export const HeaderContainer = styled.header`
 
 export const HeaderButton = styled(Button)`
   background-color: ${redTheme.mainColor};
-   border: none;
+    border: ${(props) =>
+    (props.$isNanniesPage || props.$isFavoritesPage ? "1px solid redTheme.mainColor" : '1px solid transparent')};
   &:hover,
   :focus,
   :active {
-      border: none;
+    border: ${(props) =>
+    (props.$isNanniesPage || props.$isFavoritesPage ? "1px solid white" : '1px solid white')};
       background-color: white;
       color: ${redTheme.mainColor};
     
@@ -54,7 +56,7 @@ export const HeaderBtn = styled(Button)`
   :focus,
   :active {
 
-   border: none;
+     border: 1px solid white;
       background-color: white;
       color: ${redTheme.mainColor};
   }

@@ -14,7 +14,9 @@ function App() {
 
   return (
     <ThemeProvider>
-      <Header />
+      <Header
+        
+      />
       <Routes>        
         <Route path="/" element={<HomePage />} />
         <Route path="/nannies" element={<Nannies />} />
