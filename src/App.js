@@ -3,7 +3,8 @@ import { Routes, Route } from 'react-router-dom';
 import HomePage from './pages/home/HomePages';
 import { ThemeProvider } from './components/theme/ThemeProvider';
 import './index.css';
-import { ToastContainer } from 'react-toastify'; // Import ToastContainer
+import { ToastContainer } from 'react-toastify'; 
+import 'react-toastify/dist/ReactToastify.css';
 import { Nannies } from './pages/nannies/Nannies.jsx';
 import { Favorites } from './pages/favorites/favorites.jsx';
 import Header from './components/header/Header.jsx';

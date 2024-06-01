@@ -26,6 +26,7 @@ export const Wrapper = styled.div`
    display: flex;
   flex-wrap: wrap;
   gap: 16px 8px;
+    margin-bottom: 16px;
 `;
 
 export const InputSmall = styled.input`
@@ -34,6 +35,16 @@ export const InputSmall = styled.input`
   width: 194px;
     height: 18px;
     border: 1px solid rgba(17, 16, 28, 0.1);
+     &:hover, 
+     :active,
+     :focus {
+      background-color: 1px solid rgba(17, 16, 28, 0.1);
+          border: 1px solid rgba(17, 16, 28, 0.1);
+    }
+
+      &::placeholder {
+    color: black;
+  }
 
 `;
 // export const Select = styled.select`
@@ -61,8 +72,11 @@ export const StyledSelect = styled(Select)`
     border-radius: 12px;
     border: 1px solid rgba(17, 16, 28, 0.1);
     font-size: 16px;
-    color: #11101c;
+    color: black;
     background-color: #fff;
+     &::placeholder {
+    color: black;
+  }
 
    
   }
@@ -77,6 +91,22 @@ export const StyledSelect = styled(Select)`
     text-align: center;
     align-items: center;
      border-radius: 12px;
+      &::placeholder {
+    color: black;
+  }
+  }
+
+  .cVOyyN .css-qbdosj-Input{
+     &::placeholder {
+    color: black;
+  }
+  }
+
+  .css-qbdosj-Input{
+        color: black;
+         &::placeholder {
+    color: black;
+  }
   }
 
   .react-select__option {
@@ -84,9 +114,7 @@ export const StyledSelect = styled(Select)`
     color: black;
     background-color: transparent;
 
-    &:hover {
-      background-color: rgba(17, 16, 28, 0.1);
-    }
+   
 
     &.react-select__option--is-selected {
       background-color: rgba(17, 16, 28, 0.2);
@@ -96,7 +124,7 @@ export const StyledSelect = styled(Select)`
 
 
 export const FormField = styled.div`
-  margin-bottom: 20px;
+
 `;
 
 
@@ -106,22 +134,36 @@ export const FormField = styled.div`
 export const Input = styled.input`
   width: 436px;
   padding: 16px 18px;
-  /* font-size: 16px; */
-    border: 1px solid rgba(17, 16, 28, 0.1);
+  border: 1px solid rgba(17, 16, 28, 0.1);
   border-radius: 12px;
+  margin-bottom: 16px;
+
+   &:hover, 
+     :active,
+     :focus {
+      /* background-color: rgba(17, 16, 28, 0.1); */
+      border: 1px solid rgba(17, 16, 28, 0.1);
+    }
+  &::placeholder {
+    color: black;
+  }
 `;
 
 export const Textarea = styled.textarea`
   width: 436px;
   padding: 16px 18px;
-  /* font-size: 16px; */
     border: 1px solid rgba(17, 16, 28, 0.1);
   border-radius: 12px;
+    margin-bottom: 16px;
+    &::placeholder {
+    color: black;
+  }
 `;
 
 export const Btn = styled(Button)`
 background-color: ${redTheme.mainColor};
 width: 100%;
+margin-top: 24px;
 
 `;
 

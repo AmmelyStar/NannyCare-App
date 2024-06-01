@@ -2,10 +2,10 @@ import { fetchDataFromDatabase } from './api'; // Укажите правиль�
 
 fetchDataFromDatabase()
   .then(dataSnapshot => {
-    // Обработка успешного получения данных
+
     console.log('Received data from database:', dataSnapshot);
   })
   .catch(error => {
-    // Обработка ошибки
+
     console.error('Error fetching data from database:', error);
   });

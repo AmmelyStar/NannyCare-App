@@ -1,8 +1,7 @@
 import React from 'react';
-import { NanniesContainer, NanniesTitle} from './styled';
+import { NanniesContainer, NanniesTitle } from './styled';
 // import  Header  from '../../components/header/Header';
-import {NannyCard} from '../../components/nanny/NannyCard'
-
+import { NannyCard } from '../../components/nanny/NannyCard';
 
 export const Nannies = () => {
   return (
@@ -11,7 +10,7 @@ export const Nannies = () => {
       <Header />
       </HeaderContainer> */}
       <NanniesTitle>Nannies Page</NanniesTitle>
-      <NannyCard/>
+      <NannyCard />
     </NanniesContainer>
   );
 };
