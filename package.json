@@ -48,6 +48,7 @@
     "react-select": "^5.8.0",
     "react-toastify": "^10.0.5",
     "styled-components": "^6.1.11",
+    "uuid": "^9.0.1",
     "yup": "^1.4.0"
   }
 }
