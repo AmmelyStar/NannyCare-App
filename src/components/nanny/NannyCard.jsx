@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { fetchDataFromDatabase } from '../../store/api';
-import fav from '../../img/icons/favorite.svg'
+import fav from '../../img/icons/favorite.svg';
+import favFilled from '../../img/icons/favorite_filled.svg';
 import location from '../../img/icons/location.svg';
 import star from '../../img/icons/Star.svg';
 import { Bubble } from '../common/bubble/Bubble';
-import { Appointment } from '../appointment/Appointment'
+import { Appointment } from '../appointment/Appointment';
 import { Modal } from '../common/modal/Modal';
 import styled from 'styled-components';
+import { v4 as uuidv4 } from 'uuid'; // Імпортуємо бібліотеку uuid
 import {
   CardContainer,
   Avatar,
@@ -44,23 +46,45 @@ export const StyledModal = styled(Modal)`
   background-color: rgba(17, 16, 28, 0.1);
 `;
 
+const getFavoritesFromLocalStorage = () => {
+  const favorites = localStorage.getItem('favorites');
+  return favorites ? JSON.parse(favorites) : [];
+};
+
+const saveFavoritesToLocalStorage = favorites => {
+  localStorage.setItem('favorites', JSON.stringify(favorites));
+};
 
 export const NannyCard = () => {
   const [nannyData, setNannyData] = useState(null);
   const [showReviews, setShowReviews] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedNanny, setSelectedNanny] = useState(null);
+  const [favorites, setFavorites] = useState(getFavoritesFromLocalStorage());
 
   useEffect(() => {
     fetchDataFromDatabase()
       .then(dataSnapshot => {
         console.log('Received data from database:', dataSnapshot);
-        setNannyData(dataSnapshot); 
+        // Додамо унікальний ідентифікатор для кожного об'єкта перед рендерингом
+        const dataWithIds = dataSnapshot.map(nanny => ({
+          ...nanny,
+          id: uuidv4(), // Генеруємо унікальний ідентифікатор за допомогою v4
+        }));
+        setNannyData(dataWithIds);
+        setShowReviews(Array(dataWithIds.length).fill(false));
       })
       .catch(error => {
         console.error('Error fetching data from database:', error);
       });
   }, []);
+
+   useEffect(() => {
+     const favoritesFromStorage = getFavoritesFromLocalStorage();
+     setFavorites(favoritesFromStorage);
+   }, []);
+
+
 
   const calculateAge = birthday => {
     const today = new Date();
@@ -89,20 +113,39 @@ export const NannyCard = () => {
     return parseFloat(rating).toFixed(1);
   }
 
-    const handleOpenModal = nanny => {
-      setSelectedNanny(nanny); 
-      setIsModalOpen(true); 
-    };
+  const handleOpenModal = nanny => {
+    setSelectedNanny(nanny);
+    setIsModalOpen(true);
+  };
 
-    const handleCloseModal = () => {
-      setIsModalOpen(false); 
-    };
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
+
+
+ const toggleFavorite = nanny => {
+   const updatedFavorites = favorites.some(fav => fav.id === nanny.id)
+     ? favorites.filter(fav => fav.id !== nanny.id)
+     : [...favorites, nanny];
+   setFavorites(updatedFavorites);
+   saveFavoritesToLocalStorage(updatedFavorites);
+    console.log('Nanny ID:', nanny.id);
+    console.log('Favorites:', updatedFavorites);
+  };
+
+
+
+ const isFavorite = nannyId => {
+   return favorites.some(fav => fav.id === nannyId);
+  };
+  localStorage.getItem('favorites');
 
   return (
     <div>
       {nannyData ? (
         nannyData.map((nanny, index) => (
-          <CardContainer key={index}>
+          <CardContainer key={nanny.id}>
             <Wrap>
               <AvatarContainer>
                 <Avatar src={nanny.avatar_url} alt="Nanny Avatar" />
@@ -127,8 +170,11 @@ export const NannyCard = () => {
                   <Price>
                     Price / 1 hour: <span>{nanny.price_per_hour}$</span>
                   </Price>
-                  <Heart>
-                    <img src={fav} alt="Favorite icon" />
+                  <Heart onClick={() => toggleFavorite(nanny)}>
+                    <img
+                      src={isFavorite(nanny.id) ? favFilled : fav}
+                      alt="Favorite icon"
+                    />
                   </Heart>
                 </Details>
               </HeaderCard>
