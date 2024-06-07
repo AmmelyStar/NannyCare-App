@@ -39,7 +39,7 @@ export const InputSmall = styled.input`
      :active,
      :focus {
       background-color: 1px solid rgba(17, 16, 28, 0.1);
-          border: 1px solid rgba(17, 16, 28, 0.1);
+          border: 1px solid red;
     }
 
       &::placeholder {
@@ -47,23 +47,7 @@ export const InputSmall = styled.input`
   }
 
 `;
-// export const Select = styled.select`
-// padding-left: 18px;
-//   border-radius: 12px;
-//   width: 232px;
-//     height: 52px;
-//     border: 1px solid rgba(17, 16, 28, 0.1);
 
-// `;
-
-// export const Option = styled.option`
-//   background-color: #fff;
-//   color: #11101c;
-//   font-size: 16px;
-//     width: 150px;
-//     height: 180px;
-  
-// `;
 
 export const StyledSelect = styled(Select)`
   .css-13cymwt-control {
@@ -74,8 +58,15 @@ export const StyledSelect = styled(Select)`
     font-size: 16px;
     color: black;
     background-color: #fff;
+     &:hover, 
+    &:active,
+    &:focus {
+      border: 1px solid red;
+    }
      &::placeholder {
     color: black;
+
+  
   }
 
    
@@ -83,7 +74,8 @@ export const StyledSelect = styled(Select)`
 
   .css-1nmdiq5-menu {
     width: 150px;
-    height: 180px;
+
+   margin-left: 84px;
     background-color: white;
     color: black;
     display: flex;
@@ -91,10 +83,46 @@ export const StyledSelect = styled(Select)`
     text-align: center;
     align-items: center;
      border-radius: 12px;
+      padding: 15px;
+
+       &:hover {
+      border: 1px solid red; /* Применение стиля при наведении */
+    }
+
+    &:focus {
+      border: 1px solid red; /* Применение стиля при фокусе */
+    }
+
+
       &::placeholder {
     color: black;
+    /* width: 150px;
+    height: 100px;  */
+    padding: 15px;
+
+   
   }
+
+
+  .css-26l3qy-menu {
+      background-color: transparent; 
+    }
   }
+
+  
+  .css-1fdsijx-ValueContainer{
+    padding-left: 16px;
+  }
+
+    .css-1u9des2-indicatorSeparator{
+      display: none;
+
+    }
+
+      .css-tj5bde-Svg{
+      display: none;
+
+    }
 
   .cVOyyN .css-qbdosj-Input{
      &::placeholder {
@@ -109,6 +137,11 @@ export const StyledSelect = styled(Select)`
   }
   }
 
+   .css-t3ipsp-control{
+    width: 232px;
+    height: 52px;
+   }
+
   .react-select__option {
     font-size: 16px;
     color: black;
@@ -117,7 +150,7 @@ export const StyledSelect = styled(Select)`
    
 
     &.react-select__option--is-selected {
-      background-color: rgba(17, 16, 28, 0.2);
+      background-color: none;
     }
   }
 `;

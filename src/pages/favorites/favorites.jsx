@@ -1,14 +1,17 @@
 import React from 'react';
-import { FavoritesContainer, FavoritesTitle, HeaderContainer } from './styled';
 import Header from '../../components/header/Header';
+import { FavoritesContainer, FavoritesTitle, HeaderContainer } from './styled';
+
 
 export const Favorites = () => {
+
+
+
   return (
     <FavoritesContainer>
-      <HeaderContainer>
-        <Header />
-      </HeaderContainer>
+
       <FavoritesTitle> Favorites Page</FavoritesTitle>
+     
     </FavoritesContainer>
   );
 };

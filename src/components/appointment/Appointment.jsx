@@ -15,6 +15,7 @@ import {
   Wrapper,
   Option,
 } from './styled';
+import clock from '../../img/icons/clock.svg'
 
 const generateTimeOptions = () => {
   const times = [];
@@ -89,7 +90,11 @@ export const Appointment = ({ isOpen, onClose, nanny }) => {
           <InputSmall type="text" placeholder="Child's age" />
         </FormField>
         <FormField>
-          <StyledSelect options={timeOptions} placeholder="00:00" />
+          <StyledSelect
+            options={timeOptions}
+            placeholder="00:00"
+            style={{ width: '194px', height: '18px' }}
+          />
         </FormField>
       </Wrapper>
 

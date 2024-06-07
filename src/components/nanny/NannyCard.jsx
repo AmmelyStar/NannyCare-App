@@ -124,15 +124,22 @@ export const NannyCard = () => {
 
 
 
- const toggleFavorite = nanny => {
-   const updatedFavorites = favorites.some(fav => fav.id === nanny.id)
-     ? favorites.filter(fav => fav.id !== nanny.id)
-     : [...favorites, nanny];
-   setFavorites(updatedFavorites);
-   saveFavoritesToLocalStorage(updatedFavorites);
-    console.log('Nanny ID:', nanny.id);
-    console.log('Favorites:', updatedFavorites);
-  };
+ const handleFavoriteToggle = nanny => {
+   // Перевірка, чи обрана няня є в списку обраних
+   const isCurrentlyFavorite = isFavorite(nanny.id);
+
+   // Якщо няня вже в обраних, видалимо її зі списку
+   if (isCurrentlyFavorite) {
+     const updatedFavorites = favorites.filter(fav => fav.id !== nanny.id);
+     setFavorites(updatedFavorites);
+     saveFavoritesToLocalStorage(updatedFavorites);
+   } else {
+     // Якщо няня не в обраних, додамо її до списку
+     const updatedFavorites = [...favorites, nanny];
+     setFavorites(updatedFavorites);
+     saveFavoritesToLocalStorage(updatedFavorites);
+   }
+ };
 
 
 
@@ -170,7 +177,7 @@ export const NannyCard = () => {
                   <Price>
                     Price / 1 hour: <span>{nanny.price_per_hour}$</span>
                   </Price>
-                  <Heart onClick={() => toggleFavorite(nanny)}>
+                  <Heart onClick={() => handleFavoriteToggle(nanny)}>
                     <img
                       src={isFavorite(nanny.id) ? favFilled : fav}
                       alt="Favorite icon"
